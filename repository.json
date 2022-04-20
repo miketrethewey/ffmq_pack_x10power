@@ -11,19 +11,7 @@
       "uid": "ffmq_pack_x10power",
       "link": "https://github.com/x10power/ffmq-rando-tracker/releases/download/First/ffmq-rando-tracker.zip",
       // build variants from individual manifests
-      "variants": [
-        {
-          "name": "Items-Only"
-        },
-        {
-          "name": "Standard with Map",
-          "flags": [
-            "chathud",
-            "map",
-            "pins"
-          ]
-        }
-      ]
+      "variants": []
     }
   ]
 }

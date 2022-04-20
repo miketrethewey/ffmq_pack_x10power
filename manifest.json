@@ -2,8 +2,8 @@
   "name": "Final Fantasy Mystic Quest Randomizer Item Tracker",
   "author": "x10power, Mike Trethewey",
   "game_name": "Final Fantasy Mystic Quest",
-  "flags": [], // build from variants
-  "package_version": "1.0.000",
+  "flags": [],
+  "package_version": "1.0.0",
   "package_uid": "ffmq_pack_x10power",
   "platform": "snes",
   "documentation_url": "",

@@ -175,7 +175,7 @@ jobs:
           release_name: Final Fantasy Mystic Quest Tracker v${{ steps.debug_info.outputs.github_tag }}
           body_path: RELEASENOTES.md
           # draft: true
-        if: contains(github.ref, 'master')
+        if: contains(github.ref, 'master') || contains(github.ref, 'main')
 
       # upload archive asset
       - name: Upload Archive Asset
@@ -188,7 +188,7 @@ jobs:
           asset_path: ../deploy/ffmq_pack_x10power.zip
           asset_name: ffmq_pack_x10power.zip
           asset_content_type: application/zip
-        if: contains(github.ref, 'master')
+        if: contains(github.ref, 'master') || contains(github.ref, 'main')
 
   # Update Pack Listing
   update-packlisting:
@@ -239,4 +239,4 @@ jobs:
           repo: ${{ steps.packlisting.outputs.packlisting_username }}/${{ steps.packlisting.outputs.packlisting_repository }}
           ref: ${{ steps.packlisting.outputs.packlisting_branch }}
           token: ${{ secrets.MY_PAT }}
-        if: contains(github.ref, 'master')
+        if: contains(github.ref, 'master') || contains(github.ref, 'main')

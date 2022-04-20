@@ -34,9 +34,15 @@ def prepare_appversion():
         with open(os.path.join(dirs[1], "scripts", "ver.lua"), mode="w+", encoding="utf-8") as ver:
             _ = ver.read()
             ver.seek(0)
-            ver.write("print(\"Package Version: " + env["GITHUB_TAG"] + "\")")
-            ver.truncate()
-            print("Wrote %s as Pack Version lua script" % env["GITHUB_TAG"])
+            with (open(os.path.join(".", "manifest.json"))) as manifestFile:
+              manifestJSON = json.load(manifestFile)
+              ver.writelines([
+                "print(\"Package Name:    " + manifestJSON["name"] + "\")",
+                "print(\"Package Author:  " + manifestJSON["author"] + "\")",
+                "print(\"Package Version: " + env["GITHUB_TAG"] + "\")"
+              ])
+              ver.truncate()
+              print("Wrote %s as Pack Version lua script" % env["GITHUB_TAG"])
 
     copy(
         os.path.join(".", *CI_SETTINGS["common"]["prepare_appversion"]["app_version"]),
