@@ -14,8 +14,13 @@ for filename in os.listdir(dirname):
                 itemsManifest = commentjson.load(itemsFile)
                 for item in itemsManifest:
                     if "codes" in item:
-                        primary = item["codes"].split(",")[0]
-                        chathud[primary] = {"codes":[],"secondary_codes":[],"name":item["name"],"type":item["type"]}
+                        primary = item["codes"].split(",")[0].strip()
+                        chathud[primary] = {
+                            "codes": [],
+                            "secondary_codes": [],
+                            "name": item["name"],
+                            "type": item["type"]
+                        }
                         itemCodes = list(map(lambda x: x.strip(), item["codes"].split(",")))
                         for tmp in sorted(itemCodes):
                             chathud[primary]["codes"].append(tmp)
@@ -35,16 +40,16 @@ for filename in os.listdir(dirname):
 print("")
 
 chatcodes = ""
-for [code, codes] in chathud.items():
-    name = codes["name"]
-    chatcodes += (f"{name}") + "\n"
-    chatcodes += ("-" * len(name)) + "\n"
-    chatcodes += (f"!hud {code}") + "\n"
-    if len(codes["secondary_codes"]) or codes["type"] == "consumable":
-        chatcodes += (f"> !hud {code} up") + "\n"
-        chatcodes += (f"> !hud {code} down") + "\n"
-        for secondary in codes["secondary_codes"]:
-            chatcodes += (f"> !hud {code} {secondary}") + "\n"
+for [cCode, cCodes] in chathud.items():
+    cName = cCodes["name"]
+    chatcodes += (f"{cName}") + "\n"
+    chatcodes += ("-" * len(cName)) + "\n"
+    chatcodes += (f"!hud {cCode}") + "\n"
+    if len(cCodes["secondary_codes"]) or cCodes["type"] == "consumable":
+        chatcodes += (f"> !hud {cCode} up") + "\n"
+        chatcodes += (f"> !hud {cCode} down") + "\n"
+        for secondary in cCodes["secondary_codes"]:
+            chatcodes += (f"> !hud {cCode} {secondary}") + "\n"
 
     chatcodes += ("") + "\n"
 
@@ -52,7 +57,7 @@ codes = set(codes)
 codes = list(codes)
 codes.sort()
 
-outputdir = os.path.join(".","resources","tests","output")
+outputdir = os.path.join(".", "resources", "tests", "output")
 if not os.path.exists(outputdir):
     os.makedirs(outputdir)
 with open(os.path.join(outputdir, "chathud.txt"), mode="w+", encoding="utf-8") as chathudTxt:
