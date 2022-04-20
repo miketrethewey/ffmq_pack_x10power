@@ -34,6 +34,10 @@ jobs:
         with:
           os-name: ${{ matrix.os-name }}
           python-version: ${{ matrix.python-version }}
+      # Analyze used GitHub Actions
+      - name: Analyze used GitHub Actions
+        run: |
+          python ./resources/ci/common/list_actions.py
       # test
       - name: ⏱️Call Test
         uses: ./.github/actions/test
@@ -238,5 +242,5 @@ jobs:
           workflow: Deploy Pages
           repo: ${{ steps.packlisting.outputs.packlisting_username }}/${{ steps.packlisting.outputs.packlisting_repository }}
           ref: ${{ steps.packlisting.outputs.packlisting_branch }}
-          token: ${{ secrets.MY_PAT }}
+          token: ${{ secrets.MY_PAT }} # https://github.com/settings/tokens
         if: contains(github.ref, 'master') || contains(github.ref, 'main')
