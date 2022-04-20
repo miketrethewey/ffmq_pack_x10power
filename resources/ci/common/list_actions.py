@@ -9,9 +9,10 @@ def process_walk(key, node):
   global listACTIONS
   if key == "uses":
     action = node.split('@')
+    version = ""
     if '@' in node:
       version = action[1]
-      action = action[0]
+    action = action[0]
     if action not in allACTIONS:
       allACTIONS[action] = []
     allACTIONS[action].append(version)
@@ -35,10 +36,10 @@ for r,d,f in os.walk(os.path.join(".",".github")):
         " "
       )
       print("| " + os.path.join(r,filename) + " |")
-      with(open(os.path.join(r,filename), "r")) as yamlFile:
+      with(open(os.path.join(r,filename), "r", encoding="utf-8")) as yamlFile:
         print(
           " " +
-          ("-" * (30 + 5 + 10 + 2)) +
+          ("-" * (40 + 5 + 10 + 2)) +
           " "
         )
         yml = yaml.safe_load(yamlFile)
@@ -49,13 +50,13 @@ for r,d,f in os.walk(os.path.join(".",".github")):
             "| %s\t%s |"
             %
             (
-              action.ljust(30),
+              action.ljust(40),
               version or "N/A"
             )
           )
         print(
           " " +
-          ("-" * (30 + 5 + 10 + 2)) +
+          ("-" * (40 + 5 + 10 + 2)) +
           " "
         )
       print("")
