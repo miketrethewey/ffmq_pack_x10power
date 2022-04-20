@@ -70,22 +70,22 @@
           },
           {
             "name": "Cure Potions (Mobius Crest)",
-            "access_rules": [ "mobiuscrest" ],
+            "access_rules": ["mobiuscrest"],
             "item_count": 1
           },
           {
             "name": "Heal Potions (Mobius Crest)",
-            "access_rules": [ "mobiuscrest" ],
+            "access_rules": ["mobiuscrest"],
             "item_count": 1
           },
           {
             "name": "Explosives (Gemini Crest)",
-            "access_rules": [ "geminicrest" ],
+            "access_rules": ["geminicrest"],
             "item_count": 1
           },
           {
             "name": "Refreshers (Libra Crest)",
-            "access_rules": [ "libracrest" ],
+            "access_rules": ["libracrest"],
             "item_count": 1
           }
         ]
@@ -93,7 +93,7 @@
       // Giant Tree
       {
         "name": "Giant Tree",
-        "access_rules": [ "kaeli" ],
+        "access_rules": ["kaeli"],
         "map_locations": [
           {
             "map": "drained-world",

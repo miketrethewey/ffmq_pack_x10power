@@ -3,8 +3,8 @@
     "type": "itemgrid",
     "item_margin": "0",
     "rows": [
-      ["kaeli","phoebe","reuben","tristam"],
-      ["benjamin","party2"]
+      ["kaeli", "phoebe", "reuben", "tristam"],
+      ["benjamin", "party2"]
     ]
   }
 }

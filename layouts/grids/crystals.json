@@ -3,7 +3,13 @@
     "type": "itemgrid",
     "item_margin": "0",
     "rows": [
-      ["earthcrystal","watercrystal","firecrystal","windcrystal","lightcrystal"]
+      [
+        "earthcrystal",
+        "watercrystal",
+        "firecrystal",
+        "windcrystal",
+        "lightcrystal"
+      ]
     ]
   }
 }

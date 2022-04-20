@@ -209,17 +209,17 @@
       // Ice Pyramid
       {
         "name": "Ice Pyramid",
-        "access_rules": [ "bomb2,swords" ],
+        "access_rules": ["bomb2,swords"],
         "map_locations": [
           {
             "map": "drained-world",
             "x": 575,
-            "y":  80
+            "y": 80
           },
           {
             "map": "restored-world",
             "x": 575,
-            "y":  80
+            "y": 80
           }
         ],
         "sections": [

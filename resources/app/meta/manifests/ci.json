@@ -36,10 +36,22 @@
       "user_resources": "resources/user*"
     },
     "install": {
-      "pip_requirements": [ "resources", "app", "meta", "manifests", "pip_requirements.txt" ]
+      "pip_requirements": [
+        "resources",
+        "app",
+        "meta",
+        "manifests",
+        "pip_requirements.txt"
+      ]
     },
     "prepare_appversion": {
-      "app_version": [ "resources", "app", "meta", "manifests", "app_version.txt" ]
+      "app_version": [
+        "resources",
+        "app",
+        "meta",
+        "manifests",
+        "app_version.txt"
+      ]
     }
   }
 }

@@ -149,12 +149,12 @@
           {
             "map": "drained-world",
             "x": 323,
-            "y":  90
+            "y": 90
           },
           {
             "map": "restored-world",
             "x": 323,
-            "y":  90
+            "y": 90
           }
         ],
         "sections": [

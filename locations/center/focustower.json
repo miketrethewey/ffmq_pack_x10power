@@ -66,7 +66,7 @@
           },
           {
             "name": "Venus Shield",
-            "access_rules": ["rivercoin","bomb"],
+            "access_rules": ["rivercoin, bomb"],
             "#type": "keyitem",
             "item_count": 1
           },

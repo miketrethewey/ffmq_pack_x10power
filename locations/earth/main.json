@@ -61,7 +61,7 @@
           },
           {
             "name": "Cure Potion (SE)",
-            "access_rules": [ "axe" ],
+            "access_rules": ["axe"],
             "#itemtype": "basket",
             "item_count": 1
           },
@@ -72,13 +72,13 @@
           },
           {
             "name": "Heal Potion (SW)",
-            "access_rules": [ "axe" ],
+            "access_rules": ["axe"],
             "#itemtype": "basket",
             "item_count": 1
           },
           {
             "name": "Kaeli Gift 1:",
-            "access_rules": [ "treewither" ],
+            "access_rules": ["treewither"],
             "#itemtype": "kaeli",
             "item_count": 1
           }
