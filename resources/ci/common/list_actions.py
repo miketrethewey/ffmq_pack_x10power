@@ -1,4 +1,7 @@
+import json
 import os
+import ssl
+import urllib.request
 import yaml
 
 allACTIONS = {}
@@ -14,9 +17,12 @@ def process_walk(key, node):
       version = action[1]
     action = action[0]
     if action not in allACTIONS:
-      allACTIONS[action] = []
-    allACTIONS[action].append(version)
-    allACTIONS[action] = list(set(allACTIONS[action]))
+      allACTIONS[action] = {
+        "versions": [],
+        "latest": ""
+      }
+    allACTIONS[action]["versions"].append(version)
+    allACTIONS[action]["versions"] = list(set(allACTIONS[action]["versions"]))
     listACTIONS.append(node)
 
 def walk(key, node):
@@ -30,6 +36,7 @@ def walk(key, node):
 for r,d,f in os.walk(os.path.join(".",".github")):
   if "actions" in r or "workflows" in r:
     for filename in f:
+      listACTIONS = []
       print(
         " " +
         ("-" * (len(os.path.join(r,filename)) + 2)) +
@@ -44,14 +51,35 @@ for r,d,f in os.walk(os.path.join(".",".github")):
         )
         yml = yaml.safe_load(yamlFile)
         walk("uses", yml)
-        dictACTIONS = {k.split('@')[0]: (k.split('@')[1] if '@' in k else "") for k in sorted(list(set(listACTIONS)))}
+        dictACTIONS = {}
+        for k in sorted(list(set(listACTIONS))):
+          action = k.split('@')[0]
+          version = k.split('@')[1] if '@' in k else ""
+          latest = ""
+          if "./." not in action:
+            apiURL = f"https://api.github.com/repos/{action}/releases/latest"
+            if True:
+              apiReq = None
+              try:
+                apiReq = urllib.request.urlopen(apiURL, context=ssl._create_unverified_context())
+              except urllib.error.URLError as e:
+                if e.code != 403:
+                  print(e.code, apiURL)
+              if apiReq:
+                apiRes = json.loads(apiReq.read().decode("utf-8"))
+                if apiRes:
+                  latest = apiRes["tag_name"] if "tag_name" in apiRes else ""
+                  if latest != "":
+                    allACTIONS[action]["latest"] = latest
+          dictACTIONS[action] = version
         for action, version in dictACTIONS.items():
           print(
-            "| %s\t%s |"
+            "| %s\t%s\t%s |"
             %
             (
               action.ljust(40),
-              version or "N/A"
+              (version or "N/A").ljust(10),
+              allACTIONS[action]["latest"]
             )
           )
         print(
@@ -61,13 +89,26 @@ for r,d,f in os.walk(os.path.join(".",".github")):
         )
       print("")
 
-for action, versions in allACTIONS.items():
-  if len(versions) > 1:
-    print(
-      "| %s\t%s |"
-      %
-      (
-        action.ljust(30),
-        versions or "N/A"
+print(
+  " " +
+  ("-" * (len("| Outdated |") - 2)) +
+  " "
+)
+print("| Outdated |")
+print(
+  " " +
+  ("-" * (len("| Outdated |") - 2)) +
+  " "
+)
+for action, actionData in allACTIONS.items():
+  if len(actionData["versions"]) > 0:
+    if allACTIONS[action]["latest"] != "" and actionData["versions"][0] != allACTIONS[action]["latest"]:
+      print(
+        "| %s\t%s\t%s |"
+        %
+        (
+          action.ljust(40),
+          (",".join(actionData["versions"]) or "N/A").ljust(10),
+          actionData["latest"]
+        )
       )
-    )
