@@ -109,6 +109,6 @@ for action, actionData in allACTIONS.items():
         (
           action.ljust(40),
           (",".join(actionData["versions"]) or "N/A").ljust(10),
-          actionData["latest"]
+          actionData["latest"].ljust(10)
         )
       )

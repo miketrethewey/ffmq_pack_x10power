@@ -11,8 +11,7 @@ inputs:
 #########
 # actions
 #########
-# actions/checkout@v3.0.0
-# actions/setup-python@v3.0.0
+# actions/setup-python@v3.1.2
 # actions/upload-artifact@v3.0.0
 
 runs:
@@ -20,7 +19,7 @@ runs:
   steps:
     # install python
     - name: 💿Install Python
-      uses: actions/setup-python@v3.0.0
+      uses: actions/setup-python@v3.1.2
       with:
         python-version: ${{ inputs.python-version }}
     # install modules via pip
